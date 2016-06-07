@@ -1,0 +1,31 @@
+package edu.wustl.cgw.domain
+
+import org.hibernate.type.LocaleType
+
+/**
+ * Represents Description property
+ * for ex :
+ * <pre>
+ * {@code
+ *
+ *     <cgw:description lang="en">For indels called by gatk, filter out ...</cgw:description>
+ *}
+ * </pre>
+ * Embedded classes should be defined in src/groovy directory -
+ * @see <a href="http://grails.org/doc/latest/ref/Domain%20Classes/embedded.html"> http://grails.org/doc/latest/ref/Domain%20Classes/embedded.html</a>
+ *
+ */
+class MetaDataDescription {
+
+    Locale locale
+    String value
+
+
+    static mapping = {
+        locale type: LocaleType
+        id generator:'sequence', params:[sequence:'meta_data_description_id_seq']
+
+    }
+
+
+}

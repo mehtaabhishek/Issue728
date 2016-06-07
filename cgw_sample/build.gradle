@@ -1,0 +1,116 @@
+buildscript {
+    ext {
+        grailsVersion = project.grailsVersion
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://repo.grails.org/grails/core" }
+        maven { url "https://repo.grails.org/grails/repo" }
+        maven { url "http://repo1.maven.org/maven2/" }
+        maven { url "http://snapshots.repository.codehaus.org" }
+        maven { url "http://repository.codehaus.org" }
+        maven { url "http://repo.spring.io/milestone/" }
+        maven {url "http://repo.grails.org/grails/libs-releases/"}
+    }
+    dependencies {
+        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.5.0"
+        classpath "org.grails:grails-core:3.1.4"
+
+    }
+}
+
+version "0.1"
+group "cgw_sample"
+
+apply plugin:"eclipse"
+apply plugin:"idea"
+apply plugin:"war"
+apply plugin:"org.grails.grails-web"
+apply plugin:"org.grails.grails-gsp"
+
+
+sourceSets {
+    main {
+        resources {
+            srcDir 'grails-app/migrations'
+        }
+    }
+}
+
+grails {
+    pathingJar = true
+  
+}
+ext {
+    grailsVersion = project.grailsVersion
+    gradleWrapperVersion = project.gradleWrapperVersion
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://repo.grails.org/grails/core" }
+    maven { url "https://repo.grails.org/grails/repo" }
+    maven { url "http://repo1.maven.org/maven2/" }
+    maven { url "http://snapshots.repository.codehaus.org" }
+    maven { url "http://repository.codehaus.org" }
+    maven { url "http://repo.spring.io/milestone/" }
+    maven { url "http://repo.grails.org/grails/libs-releases/"}
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.grails:grails-bom:$grailsVersion"
+    }
+    applyMavenExclusions false
+}
+
+dependencies {
+   compile "org.springframework.boot:spring-boot-starter-logging"
+    compile "org.springframework.boot:spring-boot-autoconfigure"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "org.springframework.boot:spring-boot-starter-tomcat"
+    compile "org.grails:grails-core:3.1.4"
+    compile "org.grails:grails-dependencies:3.1.4"
+    compile "org.grails:grails-web-boot:3.1.4"
+    compile "org.grails.plugins:cache"
+    compile "org.grails.plugins:scaffolding"
+    
+    console "org.grails:grails-console:3.1.4"
+    profile "org.grails.profiles:web:3.1.4"
+    runtime "org.grails.plugins:asset-pipeline"
+    
+    testCompile "org.grails:grails-plugin-testing"
+    testCompile "org.grails.plugins:geb"
+    testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
+    testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
+	
+
+    /** --- Postgres Dependencies --- */
+    runtime "org.postgresql:postgresql:9.4.1208"
+
+    /** --- Mongo Dependencies --- */
+    compile "org.grails.plugins:mongodb:5.0.7"
+//    compile "org.mongodb:mongodb-driver:3.2.2"
+    compile "org.grails.plugins:hibernate5:5.0.7"
+    compile "org.hibernate:hibernate-core:5.1.0.Final"
+    compile "org.hibernate:hibernate-ehcache:5.1.0.Final"
+
+    compile "org.grails:grails-datastore-web:5.0.7.RELEASE"
+    compile "org.grails:grails-datastore-simple:5.0.7.RELEASE"
+    compile "org.grails:grails-datastore-gorm-mongodb:5.0.7.RELEASE"
+    compile "org.grails:grails-datastore-gorm-support:5.0.7.RELEASE"
+    compile "org.grails:grails-datastore-gorm-hibernate5:5.0.7.RELEASE"
+    compile "org.grails:grails-datastore-rest-client:5.0.7.RELEASE"
+    compile "org.grails:grails-datastore-core:5.0.7.RELEASE"
+    compile "org.grails:grails-datastore-gorm:5.0.7.RELEASE"
+    compile "org.grails:grails-datastore-gorm-hibernate-core:5.0.7.RELEASE"
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = gradleWrapperVersion
+}
+

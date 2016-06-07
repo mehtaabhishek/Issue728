@@ -1,0 +1,21 @@
+package edu.wustl.cgw.domain
+
+/**
+ * User: dileep
+ * Date: 4/29/15
+ * Time: 2:27 PM
+ */
+public interface AbstractPlugin{
+    String name
+    MetadataIdentifier metadataIdentifier
+    PluginSharingPolicyEnum sharingPolicy
+    String releaseNotes
+    Institution institution
+    static hasMany = [
+            labels: MetaDataLabel,
+            descriptions: MetaDataDescription,
+            sharedInstitutions: Institution
+    ]
+}
+
+

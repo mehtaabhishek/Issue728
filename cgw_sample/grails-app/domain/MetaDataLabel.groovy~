@@ -1,0 +1,29 @@
+package edu.wustl.cgw.domain
+
+import org.hibernate.type.LocaleType
+
+/**
+ * Represent label property
+ * for ex :
+ * <pre>
+ * {@code
+ *     <cgw:label lang="end">GATK Indels Filter</cgw:label>
+ *}
+ * </pre>
+ * Embedded classes should be defined in src/groovy directory -
+ * @see <a href="http://grails.org/doc/latest/ref/Domain%20Classes/embedded.html"> http://grails.org/doc/latest/ref/Domain%20Classes/embedded.html</a>
+ *
+ */
+class MetaDataLabel {
+
+    Locale locale
+    String value
+
+    static mapping = {
+        locale type: LocaleType
+        id generator: 'sequence', params: [sequence: 'meta_data_label_id_seq']
+
+    }
+
+
+}
